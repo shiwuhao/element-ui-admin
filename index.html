@@ -34,7 +34,7 @@
     </style>
 </head>
 <body>
-<div id="app">
+<div id="app" style="height: 100%;">
     <el-row :gutter="10" type="flex" style="background: #1F2D3D;">
         <el-col :xs="3" :sm="3" :md="3" :lg="3">
             <h2 style="margin: 0 auto; line-height: 60px; text-align: center;color: white;">VUEADMIN</h2>
@@ -54,10 +54,10 @@
         <el-col :xs="3" :sm="3" :md="3" :lg="3">
         </el-col>
     </el-row>
-    <el-row style="min-height: 100%;">
-        <el-col :xs="4" :sm="12" :md="8" :lg="3">
-            <div class="grid-content bg-purple">
-                <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse" theme="dark" style="height: 100%;">
+    <el-row style="height: 100%;">
+        <el-col :xs="4" :sm="12" :md="8" :lg="3" style="height: 100%;">
+            <div class="grid-content bg-purple" style="height: 100%;">
+                <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse" theme="dark" style="height: 100%;" style="height: 100%;">
                     <el-submenu index="1">
                         <template slot="title">
                             <i class="el-icon-message"></i>
