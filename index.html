@@ -87,7 +87,16 @@
                 </el-menu>
             </div>
         </el-col>
-        <el-col :xs="20" :sm="12" :md="16" :lg="21"><div class="grid-content bg-purple-light"></div></el-col>
+        <el-col :xs="20" :sm="12" :md="16" :lg="21">
+            <div class="grid-content bg-purple-light">
+                <el-breadcrumb separator="/">
+                    <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+                    <el-breadcrumb-item>活动管理</el-breadcrumb-item>
+                    <el-breadcrumb-item>活动列表</el-breadcrumb-item>
+                    <el-breadcrumb-item>活动详情</el-breadcrumb-item>
+                </el-breadcrumb>
+            </div>
+        </el-col>
     </el-row>
 </div>
 </body>
