@@ -1,0 +1,6 @@
+li{list-style: none;}
+.el-submenu .el-menu-item{min-width:auto;}
+.el-table .cell, .el-table th>div{padding-right: 0;}
+
+.itemdetail{padding-left:0;}
+.itemdetail li{line-height: 30px;}

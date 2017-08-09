@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 引入样式 -->
     <link rel="stylesheet" href="./css/index.css">
-
+    <link rel="stylesheet" href="./css/main.css">
     <style>
         body{
             margin: 0 auto;
@@ -40,7 +40,8 @@
             <h2 style="margin: 0 auto; line-height: 60px; text-align: center;color: white;">VUEADMIN</h2>
         </el-col>
         <el-col :xs="18" :sm="18" :md="18" :lg="18">
-            <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" style="background: #1F2D3D;" theme="dark">
+            <!--<el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" style="background: #1F2D3D;" theme="dark">-->
+            <el-menu  class="el-menu-demo" mode="horizontal"  style="background: #1F2D3D;" theme="dark">
                 <el-menu-item index="1">处理中心</el-menu-item>
                 <el-submenu index="2">
                     <template slot="title">我的工作台</template>
@@ -57,14 +58,13 @@
     <el-row style="height: 100%;">
         <el-col :xs="4" :sm="12" :md="8" :lg="3" style="height: 100%;">
             <div class="grid-content bg-purple" style="height: 100%;">
-                <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse" theme="dark" style="height: 100%;" style="height: 100%;">
+                <el-menu default-active="1-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" theme="dark" style="height: 100%;">
                     <el-submenu index="1">
                         <template slot="title">
                             <i class="el-icon-message"></i>
                             <span slot="title">导航一</span>
                         </template>
-                        <el-menu-item-group>
-                            <span slot="title">分组一</span>
+                        <el-menu-item-group title="分组一">
                             <el-menu-item index="1-1">选项1</el-menu-item>
                             <el-menu-item index="1-2">选项2</el-menu-item>
                         </el-menu-item-group>
@@ -72,7 +72,7 @@
                             <el-menu-item index="1-3">选项3</el-menu-item>
                         </el-menu-item-group>
                         <el-submenu index="1-4">
-                            <span slot="title">选项4</span>
+                            <template slot="title">选项4</template>
                             <el-menu-item index="1-4-1">选项1</el-menu-item>
                         </el-submenu>
                     </el-submenu>
@@ -103,7 +103,6 @@
                             border
                             style="width: 100%">
                         <el-table-column
-                                fixed
                                 prop="date"
                                 label="日期"
                                 width="150">
@@ -134,12 +133,11 @@
                                 width="120">
                         </el-table-column>
                         <el-table-column
-                                fixed="right"
                                 label="操作"
                                 width="100">
                             <template scope="scope">
-                                <el-button @click="handleClick" type="text" size="small">查看</el-button>
-                                <el-button type="text" size="small">编辑</el-button>
+                                <el-button @click="lookdata(scope.$index)" type="text" size="small">查看</el-button>
+                                <el-button type="text" size="small" @click="editdata(scope.$index,scope.row)">编辑</el-button>
                             </template>
                         </el-table-column>
                     </el-table>
@@ -187,6 +185,47 @@
                     address: '上海市普陀区金沙江路 1518 弄',
                     zip: 200333
                 }]
+            }
+        },
+        methods:{
+            handleOpen:function(key, keyPath) {
+                console.log(key, keyPath);
+            },
+            handleClose:function(key, keyPath) {
+                console.log(key, keyPath);
+            },
+            lookdata:function(index){
+                var tag=this.$createElement;
+                this.$msgbox({
+                    title:'详细信息',
+                    message:tag('ul',{class:'itemdetail'},[
+                        tag('li',null,'日期：'+this.tableData[index].date),
+                        tag('li',null,'姓名：'+this.tableData[index].name),
+                        tag('li',null,'地址：'+this.tableData[index].address)
+                    ])
+                })
+            },
+            editdata:function(index,row){//index当前操作的位置，row当前操作的内容
+                var tag=this.$createElement;
+                this.$msgbox({
+                    title:'编辑信息',
+                    message:tag('ul',{class:'itemdetail'},[
+                        tag('li',null,[
+                            tag('span',null,'日期：'),
+                            tag('el-input',{value:'7777'},'777')
+                        ]),
+                        tag('li',null,[
+                            tag('span',null,'姓名：'),
+                            tag('el-input',{value:'7777'},this.tableData[index].name)
+                        ]),
+                        tag('li',null,[
+                            tag('span',null,'地址：'),
+                            tag('el-input',{value:'7777'},this.tableData[index].address)
+                        ])
+                    ]),
+                    showCancelButton: true,
+                    cancelButtonText: '取消'
+                })
             }
         }
     });
