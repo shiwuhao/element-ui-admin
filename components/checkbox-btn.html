@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<div id="app" style="height: 100%;">
+    <el-row :gutter="10" type="flex" class="header">
+        <el-col :xs="3" :sm="3" :md="3" :lg="3">
+            <h2 style="margin: 0 auto; line-height: 60px; text-align: center;color: white;">VUEADMIN</h2>
+        </el-col>
+        <el-col :xs="18" :sm="18" :md="18" :lg="18">
+            <!--<el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" style="background: #1F2D3D;" theme="dark">-->
+            <el-menu  class="el-menu-demo" mode="horizontal"  style="background: #1F2D3D;" theme="dark">
+                <el-menu-item index="1">处理中心</el-menu-item>
+                <el-submenu index="2">
+                    <template slot="title">我的工作台</template>
+                    <el-menu-item index="2-1">选项1</el-menu-item>
+                    <el-menu-item index="2-2">选项2</el-menu-item>
+                    <el-menu-item index="2-3">选项3</el-menu-item>
+                </el-submenu>
+                <el-menu-item index="3"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>
+            </el-menu>
+        </el-col>
+        <el-col :xs="3" :sm="3" :md="3" :lg="3">
+        </el-col>
+    </el-row>
+    <el-row style="height: 100%;">
+        <el-col :xs="4" :sm="12" :md="8" :lg="3" style="height: 100%;">
+            <div class="grid-content bg-purple" style="height: 100%;">
+                <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" theme="dark" style="height: 100%;">
+                    <el-submenu index="1">
+                        <template slot="title">
+                            <i class="el-icon-message"></i>
+                            <span slot="title">组件</span>
+                        </template>
+                        <el-menu-item-group title="表格">
+                            <el-menu-item index="1-1">可编辑表格</el-menu-item>
+                            <el-menu-item index="1-2">展开行表格</el-menu-item>
+                        </el-menu-item-group>
+                        <el-menu-item-group title="表单">
+                            <el-menu-item index="1-3">单选按钮</el-menu-item>
+                        </el-menu-item-group>
+                        <el-submenu index="1-4">
+                            <template slot="title">多选按钮</template>
+                            <el-menu-item index="1-4-1">多选</el-menu-item>
+                        </el-submenu>
+                    </el-submenu>
+                    <el-menu-item index="2">
+                        <i class="el-icon-menu"></i>
+                        <span slot="title">导航二</span>
+                    </el-menu-item>
+                    <el-menu-item index="3">
+                        <i class="el-icon-setting"></i>
+                        <span slot="title">导航三</span>
+                    </el-menu-item>
+                </el-menu>
+            </div>
+        </el-col>
+        <el-col :xs="20" :sm="12" :md="16" :lg="21">
+            <div class="container" style="padding: 20px;">
+                <el-row>
+                    <el-breadcrumb separator="/">
+                        <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+                        <el-breadcrumb-item>活动管理</el-breadcrumb-item>
+                        <el-breadcrumb-item>活动列表</el-breadcrumb-item>
+                        <el-breadcrumb-item>活动详情</el-breadcrumb-item>
+                    </el-breadcrumb>
+                </el-row>
+                <el-row style="padding-top: 10px;">
+                    <div class="marginbot">
+                        <div class="title">基础用法</div>
+                        <el-checkbox-group v-model="checkList">
+                            <!-- checklist是数组类型，放按钮的label值可控制选中-->
+                            <el-checkbox label="复选框 A"></el-checkbox>
+                            <el-checkbox label="复选框 B"></el-checkbox>
+                            <el-checkbox label="复选框 C"></el-checkbox>
+                            <el-checkbox label="禁用" disabled></el-checkbox>
+                            <el-checkbox label="选中且禁用" disabled></el-checkbox>
+                            <!-- 禁止选中的加属性disabled-->
+                        </el-checkbox-group>
+                    </div>
+                    <div class="marginbot">
+                        <div class="title">全选与不选</div>
+                        <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">全选</el-checkbox>
+                        <div style="margin: 15px 0;"></div>
+                        <el-checkbox-group v-model="checkedCities" @change="handleCheckedCitiesChange">
+                            <el-checkbox v-for="city in cities" :label="city" :key="city">{{city}}</el-checkbox>
+                        </el-checkbox-group>
+                    </div>
+                    <div class="marginbot">
+                        <div class="title">按钮选择数量限制</div>
+                        <el-checkbox-group
+                                v-model="checkedCities1"
+                                :min="1"
+                                :max="2">
+                            <!-- min,max限制最少选择和最多选择-->
+                            <el-checkbox v-for="city in cities" :label="city" :key="city">{{city}}</el-checkbox>
+                        </el-checkbox-group>
+                    </div>
+                    <div class="marginbot">
+                        <div class="title">按钮样式</div>
+                        <el-checkbox-group v-model="checkboxGroup1">
+                            <el-checkbox-button v-for="city in cities" :label="city" :key="city">{{city}}</el-checkbox-button>
+                        </el-checkbox-group>
+                        <div style="margin: 15px 0;"></div>
+                        <el-checkbox-group v-model="checkboxGroup2" size="small">
+                            <el-checkbox-button v-for="city in cities" :label="city" :disabled="city === '深圳'" :key="city">{{city}}</el-checkbox-button>
+                        </el-checkbox-group>
+                        <div style="margin: 15px 0;"></div>
+                        <el-checkbox-group v-model="checkboxGroup3" size="large" fill="#324057" text-color="#a4aebd" :min="1" :max="3">
+                            <el-checkbox-button v-for="city in cities" :label="city" :key="city">{{city}}</el-checkbox-button>
+                        </el-checkbox-group>
+                    </div>
+                </el-row>
+            </div>
+        </el-col>
+    </el-row>
+</div>
+</body>
+<!-- 先引入 Vue -->
+<script src="../js/vue.js"></script>
+<!-- 引入组件库 -->
+<script src="../js/index.js"></script>
+<script>
+    const cityOptions = ['上海', '北京', '广州', '深圳'];
+    new Vue({
+        el: '#app',
+        data:{
+            checkList:['选中且禁用'],//checklist值类型为string时，单机按钮全部选中
+            cityOptions:['上海', '北京', '广州', '深圳'],
+            checkAll: true,
+            checkedCities: ['上海', '北京'],
+            cities: cityOptions,
+            checkedCities1: ['上海', '北京'],
+            checkboxGroup1: ['上海'],
+            checkboxGroup2: ['北京'],
+            checkboxGroup3: ['广州'],
+            isIndeterminate: true
+        },
+        methods:{
+            handleOpen:function(key, keyPath) {
+                console.log(key, keyPath);
+            },
+            handleClose:function(key, keyPath) {
+                console.log(key, keyPath);
+            },
+            handleCheckAllChange(event) {
+                this.checkedCities = event.target.checked ? cityOptions : [];
+                this.isIndeterminate = false;
+            },
+            handleCheckedCitiesChange(value) {
+                let checkedCount = value.length;
+                this.checkAll = checkedCount === this.cities.length;
+                this.isIndeterminate = checkedCount > 0 && checkedCount < this.cities.length;
+            }
+        }
+    });
+</script>
+</html>

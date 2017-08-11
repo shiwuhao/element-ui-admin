@@ -1,6 +1,35 @@
 li{list-style: none;}
 .el-submenu .el-menu-item{min-width:auto;}
 .el-table .cell, .el-table th>div{padding-right: 0;}
+body{
+    margin: 0 auto;
+    padding: 0;
+    height: 100%;
+}
+html{height: 100%;}
+#app{min-height: 100%;}
+a{text-decoration: none;}
+.el-col {
+    border-radius: 4px;
+}
+.bg-purple-dark {
+    background: #99a9bf;
+}
+.bg-purple {
+    background: #d3dce6;
+}
+.bg-purple-light {
+    background: #e5e9f2;
+}
+.grid-content {
+    border-radius: 4px;
+    min-height: 36px;
+}
+.header{background: #1F2D3D;margin-right: 0px !important;}
 
 .itemdetail{padding-left:0;}
 .itemdetail li{line-height: 30px;}
+.el-menu-item.is-active a{color: #20a0ff;}
+.el-menu-item a{color:#bfcbd9;}
+.marginbot{margin:10px 0;}
+.title{font-weight: bold;line-height: 30px;margin-bottom:10px;}
