@@ -6,6 +6,7 @@ body{
     padding: 0;
     height: 100%;
 }
+div,li{margin:0;padding:0;}
 html{height: 100%;}
 #app{min-height: 100%;}
 a{text-decoration: none;}
@@ -33,3 +34,30 @@ a{text-decoration: none;}
 .el-menu-item a{color:#bfcbd9;}
 .marginbot{margin:10px 0;}
 .title{font-weight: bold;line-height: 30px;margin-bottom:10px;}
+/*мов╖*/
+.doublelist{overflow: hidden;}
+.doublelist ul{float: left;width:40%;}
+.doublelist ul{border:1px solid #dfdfdf;border-top:none;border-radius: 4px;overflow: hidden;}
+.doublelist li{border-top:1px solid #dfdfdf;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

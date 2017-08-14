@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<div id="app" style="height: 100%;">
+    <el-row :gutter="10" type="flex" class="header">
+        <el-col :xs="3" :sm="3" :md="3" :lg="3">
+            <h2 style="margin: 0 auto; line-height: 60px; text-align: center;color: white;">VUEADMIN</h2>
+        </el-col>
+        <el-col :xs="18" :sm="18" :md="18" :lg="18">
+            <el-menu  class="el-menu-demo" mode="horizontal"  style="background: #1F2D3D;" theme="dark">
+                <el-menu-item index="1">处理中心</el-menu-item>
+                <el-submenu index="2">
+                    <template slot="title">我的工作台</template>
+                    <el-menu-item index="2-1">选项1</el-menu-item>
+                    <el-menu-item index="2-2">选项2</el-menu-item>
+                    <el-menu-item index="2-3">选项3</el-menu-item>
+                </el-submenu>
+                <el-menu-item index="3"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>
+            </el-menu>
+        </el-col>
+        <el-col :xs="3" :sm="3" :md="3" :lg="3">
+        </el-col>
+    </el-row>
+    <el-row style="height: 100%;">
+        <el-col :xs="4" :sm="12" :md="8" :lg="3" style="height: 100%;">
+            <div class="grid-content bg-purple" style="height: 100%;">
+                <el-menu default-active="1-5" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" theme="dark" style="height: 100%;">
+                    <el-submenu index="1">
+                        <template slot="title">
+                            <i class="el-icon-message"></i>
+                            <span slot="title">组件</span>
+                        </template>
+                        <el-menu-item-group title="分组一">
+                            <el-menu-item index="1-1">选项1</el-menu-item>
+                            <el-menu-item index="1-2">
+                                <a href="components/table.html">选项2</a>
+                            </el-menu-item>
+                        </el-menu-item-group>
+                        <el-menu-item-group title="分组2">
+                            <el-menu-item index="1-3">选项3</el-menu-item>
+                        </el-menu-item-group>
+                        <el-submenu index="1-4">
+                            <template slot="title">选项4</template>
+                            <el-menu-item index="1-4-1">选项1</el-menu-item>
+                        </el-submenu>
+                        <el-menu-item-group title="拖拽" >
+                            <el-menu-item index="1-5">拖拽</el-menu-item>
+                        </el-menu-item-group>
+                    </el-submenu>
+                    <el-menu-item index="2">
+                        <i class="el-icon-menu"></i>
+                        <span slot="title">导航二</span>
+                    </el-menu-item>
+                    <el-menu-item index="3">
+                        <i class="el-icon-setting"></i>
+                        <span slot="title">导航三</span>
+                    </el-menu-item>
+                </el-menu>
+            </div>
+        </el-col>
+        <el-col :xs="20" :sm="12" :md="16" :lg="21">
+            <div class="container" style="padding: 20px;">
+                <div class="marginbot">
+                    <div class="title">互相拖拽的列表</div>
+                    <div class="doublelist">
+                        <ul>
+                            <li>列表1</li>
+                            <li>列表2</li>
+                            <li>列表3</li>
+                            <li>列表4</li>
+                        </ul>
+                        <ul>
+                            <li>内容1</li>
+                            <li>内容2</li>
+                            <li>内容3</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="marginbot">
+                    <div class="title">可编辑的拖拽列表</div>
+                    <div class="doublelist">
+                        <ul>
+                            <li>列表1</li>
+                            <li>列表2</li>
+                            <li>列表3</li>
+                            <li>列表4</li>
+                        </ul>
+                        <div>增加</div>
+                    </div>
+                </div>
+            </div>
+        </el-col>
+    </el-row>
+</div>
+</body>
+<!-- 先引入 Vue -->
+<script src="../js/vue.js"></script>
+<!-- 引入组件库 -->
+<script src="../js/index.js"></script>
+<!--拖拽-->
+<script src="../js/Sortable.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        methods: {
+            handleOpen: function (key, keyPath) {
+                console.log(key, keyPath);
+            },
+            handleClose: function (key, keyPath) {
+                console.log(key, keyPath);
+            }
+        }
+    });
+</script>
+</html>
