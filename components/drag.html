@@ -70,31 +70,32 @@
             <div class="container" style="padding: 20px;">
                 <div class="marginbot">
                     <div class="title">互相拖拽的列表</div>
-                    <div class="doublelist">
-                        <ul>
+                    <el-row class="doublelist">
+                        <el-col tag="ul" :xs="10" :sm="10" :md="10" :lg="10">
                             <li>列表1</li>
                             <li>列表2</li>
                             <li>列表3</li>
                             <li>列表4</li>
-                        </ul>
-                        <ul>
+                        </el-col>
+                        <el-col :xs="2" :sm="2" :md="2" :lg="2">&nbsp;</el-col>
+                        <el-col tag="ul" :xs="10" :sm="10" :md="10" :lg="10">
                             <li>内容1</li>
                             <li>内容2</li>
                             <li>内容3</li>
-                        </ul>
-                    </div>
+                        </el-col>
+                    </el-row>
                 </div>
                 <div class="marginbot">
                     <div class="title">可编辑的拖拽列表</div>
-                    <div class="doublelist">
-                        <ul>
-                            <li>列表1</li>
-                            <li>列表2</li>
-                            <li>列表3</li>
-                            <li>列表4</li>
-                        </ul>
-                        <div>增加</div>
-                    </div>
+                    <el-row class="doublelist editlist">
+                        <el-col tag="ul" :xs="24" :sm="22" :md="22" :lg="10">
+                            <li v-for="(item,index) in editlist">
+                                <span class="fl">{{item}}</span>
+                                <i class="fr" @click="delItem(index)">&times;</i>
+                            </li>
+                            <li class="addItem" @click="addItem">添加</li>
+                        </el-col>
+                    </el-row>
                 </div>
             </div>
         </el-col>
@@ -110,12 +111,33 @@
 <script>
     new Vue({
         el: '#app',
+        data:{
+            editlist:['列表1','列表2','列表3']
+        },
         methods: {
             handleOpen: function (key, keyPath) {
                 console.log(key, keyPath);
             },
             handleClose: function (key, keyPath) {
                 console.log(key, keyPath);
+            },
+            addItem:function(){
+                this.$prompt('填写item名称', null, {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消'
+                }).then(({value})=>{
+                    if(value){
+                        this.editlist.unshift(value);
+                    }else{
+                        this.$message({
+                            message: '请填写文本框',
+                            type: 'warning'
+                        });
+                    }
+                })
+            },
+            delItem:function(index){
+                this.editlist.splice(index,1);
             }
         }
     });
