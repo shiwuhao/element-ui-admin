@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<div id="app" style="height: 100%;">
+    <el-row :gutter="10" type="flex" class="header">
+        <el-col :xs="3" :sm="3" :md="3" :lg="3">
+            <h2 style="margin: 0 auto; line-height: 60px; text-align: center;color: white;">VUEADMIN</h2>
+        </el-col>
+        <el-col :xs="18" :sm="18" :md="18" :lg="18">
+            <!--<el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" style="background: #1F2D3D;" theme="dark">-->
+            <el-menu  class="el-menu-demo" mode="horizontal"  style="background: #1F2D3D;" theme="dark">
+                <el-menu-item index="1">处理中心</el-menu-item>
+                <el-submenu index="2">
+                    <template slot="title">我的工作台</template>
+                    <el-menu-item index="2-1">选项1</el-menu-item>
+                    <el-menu-item index="2-2">选项2</el-menu-item>
+                    <el-menu-item index="2-3">选项3</el-menu-item>
+                </el-submenu>
+                <el-menu-item index="3"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>
+            </el-menu>
+        </el-col>
+        <el-col :xs="3" :sm="3" :md="3" :lg="3">
+        </el-col>
+    </el-row>
+    <el-row style="height: 100%;">
+        <el-col :xs="4" :sm="12" :md="8" :lg="3" style="height: 100%;">
+            <div class="grid-content bg-purple" style="height: 100%;">
+                <el-menu default-active="1-6" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" theme="dark" style="height: 100%;">
+                    <el-submenu index="1">
+                        <template slot="title">
+                            <i class="el-icon-message"></i>
+                            <span slot="title">组件</span>
+                        </template>
+                        <el-menu-item-group title="表格">
+                            <el-menu-item index="1-1">
+                                <a href="index.html">可编辑表格</a>
+                            </el-menu-item>
+                            <el-menu-item index="1-2">
+                                <a href="table.html">展开行表格</a>
+                            </el-menu-item>
+                        </el-menu-item-group>
+                        <el-menu-item-group title="表单">
+                            <el-menu-item index="1-3">
+                                <a href="radio-btn.html">单选按钮</a>
+                            </el-menu-item>
+                        </el-menu-item-group>
+                        <el-submenu index="1-4">
+                            <template slot="title">多选按钮</template>
+                            <el-menu-item index="1-4-1">
+                                <a href="checkbox-btn.html">多选</a>
+                            </el-menu-item>
+                        </el-submenu>
+                        <el-menu-item-group title="拖拽" >
+                            <el-menu-item index="1-5">
+                                <a href="drag.html">拖拽</a>
+                            </el-menu-item>
+                        </el-menu-item-group>
+                        <el-menu-item-group title="各种框" >
+                            <el-menu-item index="1-6">
+                                <a href="popin.html">弹框</a>
+                            </el-menu-item>
+                        </el-menu-item-group>
+                    </el-submenu>
+                    <el-menu-item index="2">
+                        <i class="el-icon-menu"></i>
+                        <span slot="title">导航二</span>
+                    </el-menu-item>
+                    <el-menu-item index="3">
+                        <i class="el-icon-setting"></i>
+                        <span slot="title">导航三</span>
+                    </el-menu-item>
+                </el-menu>
+            </div>
+        </el-col>
+        <el-col :xs="20" :sm="12" :md="16" :lg="21">
+            <div class="container" style="padding: 20px;">
+                <el-row>
+                    <el-breadcrumb separator="/">
+                        <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+                        <el-breadcrumb-item>活动管理</el-breadcrumb-item>
+                        <el-breadcrumb-item>活动列表</el-breadcrumb-item>
+                        <el-breadcrumb-item>活动详情</el-breadcrumb-item>
+                    </el-breadcrumb>
+                </el-row>
+                <el-row style="padding-top: 10px;">
+                    <div class="margintop marginbot">
+                        <div class="title">弹框</div>
+                        <el-button type="text" @click="tip">点击打开 消息提示</el-button>
+                        <el-button type="button" @click="confirm">点击打开 确认消息</el-button>
+                        <el-button type="primary" @click="submitMesg">点击打开 提交内容</el-button>
+                        <el-button type="success" @click="selfDefined">点击打开 自定义</el-button>
+                    </div>
+                    <div class="marginbot">
+                        <div class="title">提示框</div>
+                        <el-button :plain="true" @click="open">打开消息提示</el-button>
+                        <el-button :plain="true" @click="openVn">自定义提示</el-button>
+                    </div>
+                    <div class="marginbot">
+                        <div class="title">通知</div>
+                        <el-button @click="mesgclose">
+                            可自动关闭
+                        </el-button>
+                        <el-button plain @click="mesgopen">
+                            不会自动关闭
+                        </el-button>
+                        <el-button type="success" :plain="true" @click="success">
+                            成功
+                        </el-button>
+                        <el-button type="warning" :plain="true" @click="warn">
+                            警告
+                        </el-button>
+                        <el-button type="info" :plain="true" @click="mesg">
+                            消息
+                        </el-button>
+                        <el-button type="danger" :plain="true" @click="error">
+                            错误
+                        </el-button>
+                        <!-- 去掉 :plain="true"按钮样式变为纯色背景白字-->
+                    </div>
+                </el-row>
+            </div>
+        </el-col>
+    </el-row>
+</div>
+</body>
+<!-- 先引入 Vue -->
+<script src="../js/vue.js"></script>
+<!-- 引入组件库 -->
+<script src="../js/index.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data(){
+            return{}
+        },
+        methods:{
+            handleOpen:function(key, keyPath) {
+                console.log(key, keyPath);
+            },
+            handleClose:function(key, keyPath) {
+                console.log(key, keyPath);
+            },
+            tip:function(){
+                this.$alert('这是一段内容', '标题名称', {
+                    confirmButtonText: '确定',
+                    callback: action => {
+                        this.$message({
+                            type: 'info',
+                            message: `action: ${ action }`
+                        });
+                    }
+                });
+            },
+            confirm:function(){
+                this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.$message({
+                            type: 'success',
+                            message: '删除成功!'
+                        });
+            }).catch(() => {
+                this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                    });
+            });
+            },
+            submitMesg:function(){
+                this.$prompt('请输入邮箱', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
+                    inputErrorMessage: '邮箱格式不正确'
+                }).then(({ value }) => {
+                    this.$message({
+                            type: 'success',
+                            message: '你的邮箱是: ' + value
+                        });
+                }).catch(() => {
+                    this.$message({
+                            type: 'info',
+                            message: '取消输入'
+                        });
+                });
+            },
+            selfDefined:function(){
+                const h = this.$createElement;
+                this.$msgbox({
+                    title: '消息',
+                    message: h('p', null, [
+                        h('span', null, '内容可以是 '),
+                        h('i', { style: 'color: teal' }, 'VNode')
+                    ]),
+                    showCancelButton: true,
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    beforeClose: (action, instance, done) => {
+                        if (action === 'confirm') {
+                            instance.confirmButtonLoading = true;
+                            instance.confirmButtonText = '执行中...';
+                            setTimeout(() => {
+                                done();
+                                setTimeout(() => {
+                                    instance.confirmButtonLoading = false;
+                                }, 300);
+                            }, 3000);
+                        } else {
+                            done();
+                        }
+                    }
+                }).then(action => {
+                        this.$message({
+                                type: 'info',
+                                message: 'action: ' + action
+                        });
+                });
+            },
+            open:function(){
+                this.$message('这是一条消息提示');//默认3s后消失
+            },
+            openVn:function(){
+                const h = this.$createElement;
+                this.$message({
+                    message: h('p', null, [
+                        h('span', null, '内容可以是 '),
+                        h('i', { style: 'color: teal' }, 'VNode')
+                    ]),
+                    showClose: true  //添加关闭按钮
+                });
+            },
+            mesgclose:function(){
+                const h = this.$createElement;
+                this.$notify({
+                    title: '标题名称',
+                    message: h('i', { style: 'color: teal'}, '这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案')
+                });
+            },
+            mesgopen:function(){
+                this.$notify({
+                    title: '提示',
+                    message: '这是一条不会自动关闭的消息',
+                    duration: 0
+                });
+            },
+            success:function(){
+                this.$notify({
+                    title: '成功',
+                    message: '这是一条成功的提示消息',
+                    type: 'success'
+                });
+            },
+            warn:function(){
+                this.$notify({
+                    title: '警告',
+                    message: '这是一条警告的提示消息',
+                    type: 'warning'
+                });
+            },
+            mesg:function(){
+                this.$notify.info({
+                    title: '消息',
+                    message: '这是一条消息的提示消息'
+                });
+            },
+            error:function(){
+                this.$notify.error({
+                    title: '错误',
+                    message: '这是一条错误的提示消息'
+                });
+            }
+        }
+    });
+</script>
+</html>

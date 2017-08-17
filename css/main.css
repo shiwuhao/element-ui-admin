@@ -35,6 +35,7 @@ a{text-decoration: none;}
 .el-menu-item.is-active a{color: #20a0ff;}
 .el-menu-item a{color:#bfcbd9;}
 .marginbot{margin-bottom:36px;}
+.margintop{margin-top:36px;}
 .title{font-weight: bold;line-height: 30px;margin-bottom:10px;}
 /*мов╖*/
 .doublelist{overflow: hidden;}
